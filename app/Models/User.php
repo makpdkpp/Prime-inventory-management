@@ -21,7 +21,28 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function assets()
+    {
+        return $this->hasMany(Asset::class, 'created_by');
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'created_by');
+    }
+
+    public function assignedTickets()
+    {
+        return $this->hasMany(Ticket::class, 'assigned_to');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
