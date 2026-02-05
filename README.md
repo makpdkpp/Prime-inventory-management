@@ -1,59 +1,154 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Prime Inventory Management
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+ระบบจัดการทรัพย์สินและครุภัณฑ์ (IT Asset Management System) พัฒนาด้วย Laravel 12
 
-## About Laravel
+## ✨ Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Asset Management
+- **จัดการทรัพย์สิน** - เพิ่ม แก้ไข ลบ และค้นหาทรัพย์สิน
+- **Auto Generate Asset ID** - สร้างรหัสทรัพย์สินอัตโนมัติ (AST-YYYY-XXXX)
+- **QR Code** - สร้างและสแกน QR Code สำหรับทรัพย์สิน
+- **Print Label** - พิมพ์ป้ายติดทรัพย์สิน
+- **Warranty Tracking** - ติดตามสถานะการรับประกัน (หมดอายุ, ใกล้หมดอายุ, ยังใช้ได้)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Ticket System
+- **แจ้งซ่อม/แจ้งปัญหา** - สร้าง Ticket เชื่อมโยงกับทรัพย์สิน
+- **Assign & Resolve** - มอบหมายงานและบันทึกการแก้ไข
+- **Auto Generate Ticket Number** - สร้างเลข Ticket อัตโนมัติ (TKT-YYYYMM-XXXX)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Admin Features
+- **User Management** - จัดการผู้ใช้งานและ Reset Password
+- **Asset Types** - จัดการประเภททรัพย์สิน
+- **Asset Statuses** - จัดการสถานะทรัพย์สิน
+- **Backup/Restore** - สำรองและกู้คืนข้อมูล
+- **Reports** - รายงานทรัพย์สินและ Ticket พร้อม Export Excel
 
-## Learning Laravel
+## 🛠 Tech Stack
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- **Framework:** Laravel 12
+- **PHP:** ^8.2
+- **Database:** SQLite (default) / MySQL
+- **Frontend:** Blade + TailwindCSS 4
+- **Build Tool:** Vite 7
+- **Authentication:** Laravel UI
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Key Packages
+- `barryvdh/laravel-dompdf` - สร้าง PDF
+- `maatwebsite/excel` - Export Excel
+- `simplesoftwareio/simple-qrcode` - สร้าง QR Code
+- `spatie/laravel-backup` - Backup ระบบ
 
-## Laravel Sponsors
+## 📦 Installation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Requirements
+- PHP >= 8.2
+- Composer
+- Node.js & NPM
 
-### Premium Partners
+### Quick Setup
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+# Clone repository
+git clone <repository-url>
+cd Prime-inventory-management
 
-## Contributing
+# Install dependencies & setup
+composer setup
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Manual Setup
 
-## Code of Conduct
+```bash
+# Install PHP dependencies
+composer install
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Copy environment file
+cp .env.example .env
 
-## Security Vulnerabilities
+# Generate application key
+php artisan key:generate
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Run migrations
+php artisan migrate
 
-## License
+# Install Node dependencies
+npm install
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Build assets
+npm run build
+```
+
+## 🚀 Development
+
+```bash
+# Start development server (all services)
+composer dev
+```
+
+คำสั่งนี้จะรัน:
+- Laravel development server
+- Queue listener
+- Laravel Pail (logs)
+- Vite dev server
+
+หรือรันแยกแต่ละ service:
+
+```bash
+# Laravel server only
+php artisan serve
+
+# Vite dev server
+npm run dev
+
+# Queue worker
+php artisan queue:listen
+```
+
+## 🧪 Testing
+
+```bash
+composer test
+```
+
+## 📁 Project Structure
+
+```
+├── app/
+│   ├── Exports/          # Excel exports
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Admin/    # Admin controllers
+│   │   │   ├── Auth/     # Authentication
+│   │   │   └── ...       # Main controllers
+│   │   └── Middleware/
+│   └── Models/           # Eloquent models
+├── database/
+│   ├── migrations/       # Database migrations
+│   └── seeders/          # Database seeders
+├── resources/
+│   └── views/            # Blade templates
+├── routes/
+│   └── web.php           # Web routes
+└── storage/              # Logs, cache, backups
+```
+
+## 🔐 Default Credentials
+
+หลังจาก migrate แล้ว สามารถสร้าง user ผ่าน:
+
+```bash
+php artisan tinker
+```
+
+```php
+User::create([
+    'name' => 'Admin',
+    'email' => 'admin@example.com',
+    'password' => bcrypt('password'),
+    'role' => 'admin'
+]);
+```
+
+## 📄 License
+
+MIT License
